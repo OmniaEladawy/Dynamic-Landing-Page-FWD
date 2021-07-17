@@ -30,52 +30,22 @@ function dynamicSection(){
   document.querySelector("main").appendChild(section);
 }
 
-
-
-
 /* add sections to navbar */
 function navbarItems() {
     document.querySelector("#navbar__list").innerHTML = "";
     document.querySelectorAll("section").forEach(sec =>
         {
             let li = document.createElement("li");
-            li.innerHTML=`<a href="#${sec.id}" data-nav="${sec.id}" class="menu__link"> ${sec.dataset.nav} </a>`;
+            li.innerHTML=`<a href="#" data-nav="${sec.id}" class="menu__link"> ${sec.dataset.nav} </a>`;
             document.querySelector("#navbar__list").appendChild(li);
         }  
         );
 }
 
-/* detecting scrolling sections to add and remove classes 
-onscroll = function (){
-    let scrollPosition = document.documentElement.scrollTop;
-    document.querySelectorAll("section").forEach(section => {
-        if(scrollPosition >= section.offsetTop - section.offsetHeight * 0.25  && scrollPosition < section.offsetTop + section.offsetHeight - section.offsetHeight * 0.25){
-            let currentID = section.id ;
-            console.log(currentID);
-            removeClasses();
-            addClasses(currentID);
-        }  
-        
-    })
-}
-function removeClasses(){
-    document.querySelectorAll("section").forEach(sec => sec.classList.remove("your-active-class"));
-    document.querySelectorAll("nav a").forEach(e => e.classList.remove("active"));
-}
-
-function addClasses(id) {
-    let navSelector = `nav a[href="#${id}"]`;
-    let sectionSelector = `#${id}`;
-    document.querySelector(navSelector).classList.add("active");
-    document.querySelector(sectionSelector).classList.add("your-active-class");
-    location.hash = `#${id}`;
-}
-*/
-
 /* detecting scrolling sections to add and remove classes */
 function observingSections(){
     document.querySelectorAll("section").forEach(activeSec => {
-        let activeLin = document.querySelector("#navbar__list").querySelector(`[href="#${activeSec.id}"]`);
+        let activeLin = document.querySelector("#navbar__list").querySelector(`[data-nav="${activeSec.id}"]`);
         if(activeSec.getBoundingClientRect().top >= -350 && activeSec.getBoundingClientRect().top <= 150){
             activeSec.classList.add("your-active-class");
             activeLin.classList.add("active");
@@ -95,10 +65,25 @@ function upBtn(){
     }
 }
 
+/* scroll to section */
+function dynamicScroll(){
+    let listItem = document.querySelectorAll("li");
+    listItem.forEach(item => 
+    item.addEventListener("click" , function(event){
+    event.preventDefault();
+    let link = document.querySelector(`#${event.target.dataset.nav}`);
+    link.scrollIntoView();
+    location.hash= `#${event.target.dataset.nav}`;
+    console.log("hello");
+    }));
+
+}
+
 /* add sections function */
 function addSection(){
     dynamicSection();
     navbarItems();
+    dynamicScroll();
 }
 
 /* scroll to top */
@@ -118,7 +103,7 @@ for(let i = 1 ; i <= 4 ; i++){
 }
 
 navbarItems();
-
+dynamicScroll();
 
 
 
