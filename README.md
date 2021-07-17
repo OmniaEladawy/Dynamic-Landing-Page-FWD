@@ -12,6 +12,5 @@ You can go to top by clicking Up button with smooth move.
 
 Theses all features added via JavaScript.
 
-### Live Preview : https://oeladawy.github.io/FWD-Landing-Page/
 
 
