@@ -74,7 +74,6 @@ function dynamicScroll(){
     let link = document.querySelector(`#${event.target.dataset.nav}`);
     link.scrollIntoView();
     location.hash= `#${event.target.dataset.nav}`;
-    console.log("hello");
     }));
 
 }
