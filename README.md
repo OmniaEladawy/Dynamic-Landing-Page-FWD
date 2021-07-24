@@ -1,6 +1,6 @@
 # Landing Page Project
 
-These project is JavaScript practice.
+This project is JavaScript practice.
 
 I added the sections dynamically via JavaScript.
 
